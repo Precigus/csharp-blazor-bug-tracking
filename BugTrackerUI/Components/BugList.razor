@@ -12,11 +12,10 @@
     @foreach (var bug in Bugs)
     {
         <tr>
-            @foreach (var prop in bug.GetType().GetProperties())
-            {
-                var propValue = prop.GetValue(bug, null)?.ToString();
-                <td>@propValue</td>
-            }
+            <td>@bug.Id</td>
+            <td>@bug.Title</td>
+            <td>@bug.Description</td>
+            <td>@bug.Priority</td>
         </tr>
     }
 </table>
@@ -29,6 +28,6 @@
 
     protected override void OnInitialized()
     {
-        Bugs = BugService.GetBugs().OrderBy(b => b.Priority).ToList();
+        Bugs = BugService.GetBugs().OrderBy(x => x.Priority).ToList();
     }
 }
